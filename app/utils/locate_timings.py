@@ -80,14 +80,14 @@ def confusion2transcript(trancript_csv, avg_1min):
 
     df = pd.read_csv(trancript_csv)
     df['state']='Not Confused'
-    print(top_confusion_min)
+    # print(top_confusion_min)
     for min in top_confusion_min:
-        print(min)
+        # print(min)
         prev_min = min-1
         prev_min_zfill = str(prev_min).zfill(2)
-        print(prev_min_zfill)
+        # print(prev_min_zfill)
         min_zfill = str(min).zfill(2)
-        print(min_zfill)
+        # print(min_zfill)
 
         df.state[(df.timestamp < normalize_time(f"00:{min_zfill}:00")) &
                  (df.timestamp >= normalize_time(f"00:{prev_min_zfill}:00"))] = 'Confused'
@@ -115,7 +115,7 @@ def normalize_time(time_str):
 
     # Calculate the total seconds
     total_seconds = hours * 3600 + minutes * 60 + seconds
-    print(total_seconds)
+    # print(total_seconds)
     # Calculate the new hours, minutes, and seconds
     new_hours = total_seconds // 3600
     total_seconds %= 3600
@@ -124,5 +124,5 @@ def normalize_time(time_str):
 
     # Format the new time string
     normalized_time_str = f"{int(new_hours):02}:{int(new_minutes):02}:{int(new_seconds):02}"
-    print(normalized_time_str)
+    # print(normalized_time_str)
     return normalized_time_str
